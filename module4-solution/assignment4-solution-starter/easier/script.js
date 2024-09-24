@@ -41,6 +41,16 @@ var names = ["Yaakov", "John", "Jen", "Jason", "Paul", "Frank", "Larry", "Paula"
 // Loop over the names array and say either 'Hello' or "Good Bye"
 // using either the helloSpeaker's or byeSpeaker's 'speak' method.
 // See Lecture 50, part 1
+
+function getGreeting(name) {
+  var firstLetter = name.charAt(0).toLowerCase();
+  if (firstLetter === 'j') {
+    return byeSpeaker.speakSimple(name);
+  } else {
+    return helloSpeaker.speakSimple(name);
+  }
+}
+
 for (var i = 0; i < names.length; i++) {
 
   // STEP 11: (NOTHING TO DO. ALREADY DONE FOR YOU)
@@ -64,4 +74,23 @@ for (var i = 0; i < names.length; i++) {
   }
 }
 
+
+//Part 2: Mapping
+var greetings = names.map((name) => getGreeting(name));
+
+//Part 3: Reduce
+var helloReduction = names.reduce(
+  (accumulator, currentValue) => accumulator += helloSpeaker.speakSimple(currentValue) + ", " ,  
+  "hello: "
+  )
+var goodbyeReduction = names.reduce(
+  (accumulator, currentValue) => accumulator += byeSpeaker.speakSimple(currentValue) + ", " ,  
+  "bye: "
+  )
+console.log(greetings);
+console.log(helloReduction);
+console.log(goodbyeReduction);
 })();
+
+
+
